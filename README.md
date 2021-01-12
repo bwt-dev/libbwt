@@ -8,8 +8,7 @@
 
 C FFI for [Bitcoin Wallet Tracker](https://github.com/bwt-dev/bwt), a lightweight personal indexer for bitcoin wallets.
 
-Allows to programmatically manage bwt's Electrum RPC and HTTP API servers.
-
+`libbwt` allows to programmatically manage bwt's Electrum RPC and HTTP API servers.
 It can be used as a compatibility layer for easily upgrading Electrum-backed wallets to support a
 Bitcoin Core full node backend (by running the Electrum server *in* the wallet),
 or for shipping software that integrates bwt's [HTTP API](https://github.com/bwt-dev/bwt#http-api)
@@ -75,7 +74,7 @@ The function accepts two callbacks: `init_cb` and `notify_cb`.
 right before bwt is started up, after the configuration is validated.
 
 The `notify_cb(msg_type, progress, detail_n, detail_s)` callback will be called with error messages,
-progress updates and information about the running services, with the `progress` argument indicating the
+information about the running services and progress updates, with the `progress` argument indicating the
 current progress as a float from 0 to 1.
 The meaning of the `detail_{n,s}` field varies for the different `msg_type`s, which are:
 
@@ -110,8 +109,9 @@ Pre-built [signed](#verifying-the-signature) & [deterministic](#reproducible-bui
 files are available for download from the [releases page](https://github.com/bwt-dev/libbwt/releases)
 for Linux, Mac, Windows and ARMv7/8.
 
-> ⚠️ The pre-built library files are meant to enable quick experimentation. If you're integrating bwt
+> ⚠️ The pre-built libraries are meant to make it easier to get started. If you're integrating bwt
 > into real-world software, [building from source](#building-from-source) is *highly* recommended.
+
 
 #### Electrum-only variant
 
@@ -150,9 +150,6 @@ All options are optional, except for `descriptors`/`xpubs`/`addresses` (of which
 
 To start the API servers, set `electrum_addr`/`http_addr`.
 
-If bitcoind is running locally on the default port, at the default datadir location and with cookie auth enabled (the default),
-connecting to it should Just Work™, no configuration needed!
-
 #### Network and Bitcoin Core RPC
 - `network` - one of `bitcoin`, `testnet` or `regtest` (defaults to `bitcoin`)
 - `bitcoind_url` - bitcoind url (defaults to `http://localhost:<network-rpc-port>/`)
@@ -160,6 +157,9 @@ connecting to it should Just Work™, no configuration needed!
 - `bitcoind_dir` - bitcoind data directory (defaults to `~/.bitcoin` on Linux, `~/Library/Application Support/Bitcoin` on Mac, or `%APPDATA%\Bitcoin` on Windows)
 - `bitcoind_cookie` - path to cookie file (defaults to `.cookie` in the datadir)
 - `bitcoind_wallet` - bitcoind wallet to use (for use with multi-wallet)
+
+> If bitcoind is running locally on the default port, at the default datadir location and with cookie auth enabled (the default),
+> connecting to it should Just Work™, no configuration needed.
 
 #### Address tracking
 - `descriptors` - an array of descriptors to track
