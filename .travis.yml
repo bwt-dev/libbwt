@@ -1,0 +1,48 @@
+language: rust
+rust: [ stable ]
+cache: { cargo: true }
+env: [ CARGO_TERM_COLOR=always ]
+
+jobs:
+  include:
+    - stage: Check
+      name: cargo fmt
+      env: CACHE_BUCKET=fmt
+      install: rustup component add rustfmt
+      script: cargo fmt -- --check
+    - name: cargo check
+      env: CACHE_BUCKET=check
+      script: cargo check
+    - name: clippy
+      env: CACHE_BUCKET=clippy
+      install: rustup component add clippy
+      script: cargo clippy --all-targets -- -A clippy::redundant_field_names
+
+    - &build
+      stage: Reproducible builds
+      cache: false
+
+      before_script: |
+        git submodule update --init
+        docker build -t bwt-builder - < bwt/scripts/builder.Dockerfile
+        [ "$IMAGE" == "builder" ] || docker build -t bwt-$IMAGE - < bwt/scripts/$IMAGE.Dockerfile
+
+      script:
+      - >
+        echo -e tr''avis_fo''ld:start:build\\nBuilding... &&
+        docker run -u `id -u` -v `pwd`:/usr/src/libbwt -w /usr/src/libbwt \
+                   --entrypoint scripts/build.sh bwt-$IMAGE &&
+        echo tr''avis_fol''d:end:build
+      - >
+        echo '-----BEGIN SHA256SUM-----' &&
+        (cd dist && sha256sum *.tar.gz) &&
+        echo
+      # XXX if: branch in (master, dev, stable) OR tag IS present
+
+
+      name: Linux/Windows/ARMv7/ARMv8
+      env: IMAGE=builder
+
+    - <<: *build
+      name: Mac OSX
+      env: IMAGE=builder-osx
