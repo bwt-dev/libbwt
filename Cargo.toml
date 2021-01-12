@@ -1,0 +1,31 @@
+[package]
+name = "bwt"
+version = "0.0.0"
+description = "C FFI bindings for Bitcoin Wallet Tracker"
+authors = ["Nadav Ivgi <nadav@shesek.info>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/bwt-dev/libbwt"
+repository = "https://github.com/bwt-dev/libbwt"
+keywords = [ "bitcoin", "bwt", "bitcoin wallet tracker" ]
+edition = "2018"
+include = [ "src", "LICENSE" ]
+
+[features]
+default = [ "electrum", "http", "extra" ]
+electrum = [ "bwt/electrum" ]
+http = [ "bwt/http" ]
+track-spends = [ "bwt/track-spends" ]
+webhooks = [ "bwt/webhooks" ]
+extra  = [ "bwt/extra" ]
+pretty_env_logger = [ "bwt/pretty_env_logger" ]
+dirs = [ "bwt/dirs" ]
+signal-hook = [ "bwt/signal-hook" ]
+
+[lib]
+crate-type = [ "cdylib" ]
+
+[dependencies]
+bwt = { path = "./bwt", default-features = false }
+log = "0.4.11"
+serde_json = "1.0.59"
