@@ -167,13 +167,13 @@ To start the API servers, set `electrum_addr`/`http_addr`.
 - `addresses` - an array of addresses to track
 - `addresses_file` - path to file with addresses (one per line)
 - `rescan_since` - the unix timestamp to begin rescanning from, or 'now' to track new transactions only (the default)
-- `gap_limit` - the [gap limit](https://github.com/shesek/bwt#gap-limit) for address import (defaults to 20)
+- `gap_limit` - the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for address import (defaults to 20)
 - `initial_import_size` - the chunk size to use during the initial import (defaults to 350)
 - `force_rescan` - force rescanning for historical transactions, even if the addresses were already previously imported (defaults to false)
 
 #### General settings
 - `poll_interval` - interval for polling new blocks/transactions from bitcoind in seconds (defaults to 5)
-- `tx_broadcast_cmd` - [custom command](https://github.com/shesek/bwt#scriptable-transaction-broadcast) for broadcasting transactions
+- `tx_broadcast_cmd` - [custom command](https://github.com/bwt-dev/bwt#scriptable-transaction-broadcast) for broadcasting transactions
 - `verbose` - verbosity level for stderr log messages (0-4, defaults to 0)
 - `require_addresses` - when disabled, the daemon will start even without any configured wallet addresses (defaults to true)
 - `setup_logger` - enable stderr logging (defaults to true)
@@ -190,7 +190,7 @@ To start the API servers, set `electrum_addr`/`http_addr`.
 - `webhooks_urls` - array of urls to notify with index updates
 
 #### UNIX only
-- `unix_listener_path` - path to bind the [sync notification](https://github.com/shesek/bwt#real-time-indexing) unix socket (off by default)
+- `unix_listener_path` - path to bind the [sync notification](https://github.com/bwt-dev/bwt#real-time-indexing) unix socket (off by default)
 
 
 
