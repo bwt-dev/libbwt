@@ -14,7 +14,7 @@ $ gpg --keyserver keyserver.ubuntu.com --recv-keys FCF19B67866562F08A43AAD681F61
 
 # Verify signature
 $ wget -qO - https://github.com/bwt-dev/libbwt/releases/download/vVERSION/SHA256SUMS.asc \
-  | gpg --decrypt - | grep x86_64-linux | sha256sum -c -
+  | gpg --decrypt - | grep x86_64-linux.tar.gz | sha256sum -c -
 ```
 
 The signature verification should show `Good signature from "Nadav Ivgi <nadav@shesek.info>" ... Primary key fingerprint: FCF1 9B67 ...` and `libbwt-VERSION-x86_64-linux.tar.gz: OK`.
