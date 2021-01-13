@@ -1,5 +1,5 @@
 [package]
-name = "bwt"
+name = "libbwt"
 version = "0.0.0"
 description = "C FFI bindings for Bitcoin Wallet Tracker"
 authors = ["Nadav Ivgi <nadav@shesek.info>"]
@@ -23,6 +23,7 @@ dirs = [ "bwt/dirs" ]
 signal-hook = [ "bwt/signal-hook" ]
 
 [lib]
+name = "bwt"
 crate-type = [ "cdylib" ]
 
 [dependencies]
