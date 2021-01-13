@@ -183,15 +183,6 @@ checksum = "2e8c087f005730276d1096a652e92a8bacee2e2472bcc9715a74d2bec38b5820"
 
 [[package]]
 name = "bwt"
-version = "0.0.0"
-dependencies = [
- "bwt 0.2.0",
- "log 0.4.13",
- "serde_json",
-]
-
-[[package]]
-name = "bwt"
 version = "0.2.0"
 dependencies = [
  "anyhow",
@@ -799,6 +790,15 @@ name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
+name = "libbwt"
+version = "0.0.0"
+dependencies = [
+ "bwt",
+ "log 0.4.13",
+ "serde_json",
+]
 
 [[package]]
 name = "libc"
