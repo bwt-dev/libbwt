@@ -35,7 +35,7 @@ jobs:
         echo tr''avis_fol''d:end:build
       - >
         echo '-----BEGIN SHA256SUM-----' &&
-        (cd dist && sha256sum *.tar.gz) &&
+        (cd dist && sha256sum *.tar.gz | sort) &&
         echo
       # XXX if: branch in (master, dev, stable) OR tag IS present
 
