@@ -1,7 +1,7 @@
 # Bitcoin Wallet Tracker - C FFI
 
 [![Build Status](https://travis-ci.org/bwt-dev/libbwt.svg?branch=master)](https://travis-ci.org/bwt-dev/libbwt)
-[![Latest release](https://img.shields.io/github/v/release/bwt/libbwt?color=orange)](https://github.com/bwt-dev/libbwt/releases/tag/v0.2.1)
+[![Latest release](https://img.shields.io/github/v/release/bwt-dev/libbwt?color=orange)](https://github.com/bwt-dev/libbwt/releases/tag/v0.2.1)
 [![Downloads](https://img.shields.io/github/downloads/bwt-dev/libbwt/total.svg?color=blueviolet)](https://github.com/bwt-dev/libbwt/releases)
 [![MIT license](https://img.shields.io/github/license/bwt-dev/libbwt.svg?color=yellow)](https://github.com/bwt-dev/libbwt/blob/master/LICENSE)
 [![Pull Requests Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/bwt-dev/bwt#developing)
