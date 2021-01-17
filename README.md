@@ -157,6 +157,7 @@ To start the API servers, set `electrum_addr`/`http_addr`.
 - `bitcoind_dir` - bitcoind data directory (defaults to `~/.bitcoin` on Linux, `~/Library/Application Support/Bitcoin` on Mac, or `%APPDATA%\Bitcoin` on Windows)
 - `bitcoind_cookie` - path to cookie file (defaults to `.cookie` in the datadir)
 - `bitcoind_wallet` - bitcoind wallet to use (for use with multi-wallet)
+- `create_wallet_if_missing` - create the bitcoind wallet if it's missing (defaults to false)
 
 > If bitcoind is running locally on the default port, at the default datadir location and with cookie auth enabled (the default),
 > connecting to it should Just Work™, no configuration needed.
