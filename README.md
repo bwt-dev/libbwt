@@ -151,7 +151,7 @@ All options are optional, except for `descriptors`/`xpubs`/`addresses` (of which
 To start the API servers, set `electrum_addr`/`http_addr`.
 
 #### Network and Bitcoin Core RPC
-- `network` - one of `bitcoin`, `testnet` or `regtest` (defaults to `bitcoin`)
+- `network` - one of `bitcoin`, `testnet`, `signet` or `regtest` (defaults to `bitcoin`)
 - `bitcoind_url` - bitcoind url (defaults to `http://localhost:<network-rpc-port>/`)
 - `bitcoind_auth` - authentication in `<user>:<pass>` format (defaults to reading from the cookie file)
 - `bitcoind_dir` - bitcoind data directory (defaults to `~/.bitcoin` on Linux, `~/Library/Application Support/Bitcoin` on Mac, or `%APPDATA%\Bitcoin` on Windows)
