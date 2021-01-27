@@ -82,6 +82,7 @@ The meaning of the `detail_{n,s}` field varies for the different `msg_type`s, wh
   timestamp of the current chain tip.
 - `progress:scan` - Progress updates for historical transactions rescanning. `detail_n` contains the estimated
   remaining time in seconds.
+- `access_token` - When `auth_ephemeral` is enabled (see below), `detail_s` contains the randomly generated access token.
 - `ready:electrum` - The Electrum server is ready. `detail_s` contains the address the server is bound on,
   as an `<ip>:<port>` string (useful for ephemeral binding on port 0).
 - `ready:http` - The HTTP server is ready. `detail_s` contains the address the server is bound on.
@@ -171,6 +172,16 @@ To start the API servers, set `electrum_addr`/`http_addr`.
 - `gap_limit` - the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for address import (defaults to 20)
 - `initial_import_size` - the chunk size to use during the initial import (defaults to 350)
 - `force_rescan` - force rescanning for historical transactions, even if the addresses were already previously imported (defaults to false)
+
+### Authentication
+
+The API servers are unauthenticated by default. To enable authentication, set one of the following options:
+
+- `auth_cookie` - set to a file path to enable cookie file based authentication
+- `auth_token` - enable authentication with a specified access token
+- `auth_ephemeral`  - set to `true` to generate a random ephemeral token and report it back via the `token` notification
+
+See [`auth.md`](https://github.com/bwt-dev/bwt/blob/master/doc/auth.md) for more information about authentication.
 
 #### General settings
 - `poll_interval` - interval for polling new blocks/transactions from bitcoind in seconds (defaults to 5)

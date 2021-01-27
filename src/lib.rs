@@ -9,8 +9,8 @@ use std::sync::{mpsc, Once};
 use std::{any, panic, thread};
 
 use bwt::error::{BwtError, Context, Error, Result};
-use bwt::util::{bitcoincore_wait::Progress, on_oneshot_done};
-use bwt::{App, Config};
+use bwt::util::on_oneshot_done;
+use bwt::{App, Config, Progress};
 
 const OK: i32 = 0;
 const ERR: i32 = -1;
@@ -39,6 +39,7 @@ pub extern "C" fn bwt_start(
         let config: Config = serde_json::from_str(json_config).context("Invalid config")?;
         // The verbosity level cannot be changed once the logger is initialized.
         INIT_LOGGER.call_once(|| config.setup_logger());
+        let is_ephemeral_auth = config.auth_ephemeral;
 
         // Spawn background thread to emit syncing/scanning progress updates to notify_fn
         let (progress_tx, progress_rx) = mpsc::channel();
@@ -55,6 +56,16 @@ pub extern "C" fn bwt_start(
             return Err(BwtError::Canceled.into());
         }
 
+        if is_ephemeral_auth {
+            notify(
+                notify_fn,
+                "access_token",
+                1.0,
+                0,
+                app.access_token().unwrap(),
+            );
+        }
+
         #[cfg(feature = "electrum")]
         if let Some(addr) = app.electrum_addr() {
             notify(notify_fn, "ready:electrum", 1.0, 0, &addr.to_string());
@@ -66,7 +77,7 @@ pub extern "C" fn bwt_start(
 
         notify(notify_fn, "ready", 1.0, 0, "");
 
-        app.sync(Some(shutdown_rx));
+        app.sync_loop(Some(shutdown_rx));
 
         Ok(())
     };
@@ -130,11 +141,11 @@ fn spawn_recv_progress_thread(
 ) -> thread::JoinHandle<()> {
     thread::spawn(move || loop {
         match progress_rx.recv() {
-            Ok(Progress::Sync { progress_n, tip }) => {
-                notify(notify_fn, "progress:sync", progress_n, tip, "")
+            Ok(Progress::Sync { progress_f, tip }) => {
+                notify(notify_fn, "progress:sync", progress_f, tip, "")
             }
-            Ok(Progress::Scan { progress_n, eta }) => {
-                notify(notify_fn, "progress:scan", progress_n, eta, "")
+            Ok(Progress::Scan { progress_f, eta }) => {
+                notify(notify_fn, "progress:scan", progress_f, eta, "")
             }
             Ok(Progress::Done) | Err(mpsc::RecvError) => break,
         }
