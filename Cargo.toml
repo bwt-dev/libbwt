@@ -1,6 +1,6 @@
 [package]
 name = "libbwt"
-version = "0.2.1"
+version = "0.2.2"
 description = "C FFI bindings for Bitcoin Wallet Tracker"
 authors = ["Nadav Ivgi <nadav@shesek.info>"]
 license = "MIT"
