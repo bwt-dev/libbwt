@@ -172,6 +172,7 @@ To start the API servers, set `electrum_addr`/`http_addr`.
 - `gap_limit` - the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for address import (defaults to 20)
 - `initial_import_size` - the chunk size to use during the initial import (defaults to 350)
 - `force_rescan` - force rescanning for historical transactions, even if the addresses were already previously imported (defaults to false)
+- `no_wait_sync` - don't wait for bitcoind to finish syncing up before importing addresses (useful with pruning for scanning during IBD, off by default)
 
 ### Authentication
 
@@ -189,6 +190,7 @@ See [`auth.md`](https://github.com/bwt-dev/bwt/blob/master/doc/auth.md) for more
 - `verbose` - verbosity level for stderr log messages (0-4, defaults to 0)
 - `require_addresses` - when disabled, the daemon will start even without any configured wallet addresses (defaults to true)
 - `setup_logger` - enable stderr logging (defaults to true)
+- `prune_until` - prune blocks before the given height or unix timestamp (off by default, requires bitcoind to be configured with `prune=1`)
 
 #### Electrum
 - `electrum_addr` - bind address for electrum server (off by default)
