@@ -208,7 +208,7 @@ checksum = "f07aa6688c702439a1be0307b6a94dffe1168569e45b9500c1372bc580740d59"
 
 [[package]]
 name = "bwt"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "anyhow",
  "bitcoin",
@@ -767,7 +767,7 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libbwt"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "bwt",
  "log 0.4.14",
